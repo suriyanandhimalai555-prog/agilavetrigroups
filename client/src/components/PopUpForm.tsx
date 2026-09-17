@@ -100,10 +100,10 @@ const PopUpForm: React.FC<PopUpFormProps> = ({ isOpen, onClose }) => {
         try {
             // Check for the Vite env variable, fallback to localhost for development
             const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
-            
+
             const response = await fetch(`${API_URL}/api/contact`, {
                 method: 'POST',
-                headers: { 
+                headers: {
                     'Content-Type': 'application/json',
                     'Accept': 'application/json'
                 },
@@ -143,13 +143,15 @@ const PopUpForm: React.FC<PopUpFormProps> = ({ isOpen, onClose }) => {
                 {/* Header Strip */}
                 <div className="w-full h-2 bg-gradient-to-r from-[#0437cc] to-[#f77704]"></div>
 
-                {/* Close Button */}
+                {/* Close (X) Button - Fixed clickability by adding z-50 and padding */}
                 <button
+                    type="button"
                     onClick={onClose}
                     disabled={isSubmitting}
-                    className={`absolute top-4 right-4 transition-colors duration-300 ${isSubmitting ? 'text-gray-300 cursor-not-allowed' : 'text-[#010a1f]/40 hover:text-[#f77704]'}`}
+                    className={`absolute top-4 right-4 z-50 p-2 transition-colors duration-300 ${isSubmitting ? 'text-gray-300 cursor-not-allowed' : 'text-[#010a1f]/40 hover:text-[#f77704]'}`}
+                    aria-label="Close form"
                 >
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-6 h-6">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-6 h-6 pointer-events-none">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
                     </svg>
                 </button>
