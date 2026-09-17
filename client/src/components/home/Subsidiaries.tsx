@@ -26,7 +26,7 @@ const Subsidiaries: React.FC = () => {
             description: "World-class professional training in financial markets and strategic trading.",
             image: "subsidiaries/agilavetri-trading-academy.png",
             colSpan: "lg:col-span-8",
-            link: "https://avgcoin.in/index-2.html"
+            link: "https://avgtradingacademy.com/"
         },
         {
             title: "Agilavetri Jewelers Pvt Ltd",
@@ -40,28 +40,28 @@ const Subsidiaries: React.FC = () => {
             description: "Strategic land development and transparent real-estate investments.",
             image: "subsidiaries/agilavetri-land-promoters.png",
             colSpan: "lg:col-span-4",
-            link: "https://agilavetriproperties.com/"
+            link: "https://agilavetripromoters.com/"
         },
         {
             title: "Agilavetri Builders Pvt Ltd",
             description: "Building foundations for the future with innovative architectural solutions.",
             image: "subsidiaries/agilavetri-builders.png",
             colSpan: "lg:col-span-8",
-            link: "#"
+            link: "https://agilavetripromoters.com/"
         },
         {
             title: "Public Charitable Trust",
             description: "Committed to impactful social initiatives and community empowerment.",
             image: "subsidiaries/public-charitable-trust.png",
             colSpan: "lg:col-span-6",
-            link: "#"
+            link: "https://agilavetriganesha.org/"
         },
         {
             title: "Crypto Currency",
             description: "Leading the digital revolution with secure cryptocurrency ecosystems.",
             image: "subsidiaries/crypto-currency.png",
             colSpan: "lg:col-span-6",
-            link: "https://avgforex.com/"
+            link: "https://avgexchange.io"
         }
     ];
 

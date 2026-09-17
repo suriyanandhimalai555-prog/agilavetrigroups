@@ -98,8 +98,16 @@ const PopUpForm: React.FC<PopUpFormProps> = ({ isOpen, onClose }) => {
         setSubmitStatus('idle');
 
         try {
-            // Check for the Vite env variable, fallback to localhost for development
-            const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+            // Failsafe: Retrieve URL and force correct formatting
+            let API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+            
+            // If the URL is missing http:// or https://, automatically prepend it
+            if (API_URL && !API_URL.startsWith('http')) {
+                API_URL = `https://${API_URL}`;
+            }
+            
+            // Strip any trailing slash to prevent double slashes (e.g., .com//api)
+            API_URL = API_URL.replace(/\/$/, '');
 
             const response = await fetch(`${API_URL}/api/contact`, {
                 method: 'POST',
@@ -143,7 +151,7 @@ const PopUpForm: React.FC<PopUpFormProps> = ({ isOpen, onClose }) => {
                 {/* Header Strip */}
                 <div className="w-full h-2 bg-gradient-to-r from-[#0437cc] to-[#f77704]"></div>
 
-                {/* Close (X) Button - Fixed clickability by adding z-50 and padding */}
+                {/* Close (X) Button */}
                 <button
                     type="button"
                     onClick={onClose}

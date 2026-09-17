@@ -59,8 +59,8 @@ const PrivacyPolicy: React.FC = () => {
             );
         }
 
-        // Content Sections Scroll Reveal
-        contentRefs.current.forEach((el, index) => {
+        // Content Sections Scroll Reveal (Removed unused 'index' parameter)
+        contentRefs.current.forEach((el) => {
             if (el) {
                 gsap.fromTo(el,
                     { opacity: 0, y: 40 },
