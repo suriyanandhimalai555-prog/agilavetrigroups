@@ -12,8 +12,8 @@ const Gallery: React.FC = () => {
 
     // --- State Management ---
     // Generate an array of 52 image paths based on the requested format
-    const totalImages = 52;
-    const images = Array.from({ length: totalImages }, (_, i) => `/gallery/${i + 1}.jpeg`);
+    const totalImages = 38;
+    const images = Array.from({ length: totalImages }, (_, i) => `/gallery/${i + 1}.jpg`);
 
     // Number of images to show initially (2 rows * 4 cols = 8 images)
     const initialCount = 8;
