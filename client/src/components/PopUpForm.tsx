@@ -42,7 +42,6 @@ const PopUpForm: React.FC<PopUpFormProps> = ({ isOpen, onClose }) => {
             );
         } else {
             document.body.style.overflow = 'auto';
-            // Reset form completely when closed
             setTimeout(() => {
                 setFormData({ name: '', email: '', phone: '', message: '' });
                 setErrors({});
@@ -59,7 +58,6 @@ const PopUpForm: React.FC<PopUpFormProps> = ({ isOpen, onClose }) => {
         const { name, value } = e.target;
         setFormData(prev => ({ ...prev, [name]: value }));
 
-        // Clear red error when user starts typing
         if (errors[name as keyof FormErrors]) {
             setErrors(prev => ({ ...prev, [name]: undefined }));
         }
@@ -93,14 +91,12 @@ const PopUpForm: React.FC<PopUpFormProps> = ({ isOpen, onClose }) => {
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
 
-        // Stop submission if validation fails
         if (!validateForm()) return;
 
         setIsSubmitting(true);
         setSubmitStatus('idle');
 
         try {
-            // Point to backend safely
             let API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
             if (!API_URL.startsWith('http')) API_URL = `https://${API_URL}`;
             if (API_URL.endsWith('/')) API_URL = API_URL.slice(0, -1);
@@ -116,7 +112,6 @@ const PopUpForm: React.FC<PopUpFormProps> = ({ isOpen, onClose }) => {
 
             if (response.ok) {
                 setSubmitStatus('success');
-                // Automatically close the modal after 3 seconds of success
                 setTimeout(() => {
                     onClose();
                 }, 3000);
@@ -144,10 +139,8 @@ const PopUpForm: React.FC<PopUpFormProps> = ({ isOpen, onClose }) => {
                 className="relative w-full max-w-lg bg-white rounded-xl shadow-2xl overflow-hidden"
                 onClick={(e) => e.stopPropagation()}
             >
-                {/* Header Strip */}
                 <div className="w-full h-2 bg-gradient-to-r from-[#0437cc] to-[#f77704]"></div>
 
-                {/* Close Button */}
                 <button
                     type="button"
                     onClick={onClose}
@@ -162,7 +155,6 @@ const PopUpForm: React.FC<PopUpFormProps> = ({ isOpen, onClose }) => {
 
                 <div className="p-8 md:p-10 relative">
 
-                    {/* Success Overlay */}
                     {submitStatus === 'success' ? (
                         <div className="flex flex-col items-center justify-center h-full text-center py-10">
                             <div className="w-20 h-20 bg-[#0437cc]/10 text-[#0437cc] rounded-full flex items-center justify-center mb-6">
@@ -183,7 +175,6 @@ const PopUpForm: React.FC<PopUpFormProps> = ({ isOpen, onClose }) => {
                             </p>
 
                             <form className="flex flex-col gap-5" onSubmit={handleSubmit}>
-                                {/* Name Input */}
                                 <div className="flex flex-col gap-1">
                                     <label className={`text-xs font-bold uppercase tracking-widest ${errors.name ? 'text-red-500' : 'text-[#010a1f]/50'}`}>Full Name</label>
                                     <input
@@ -197,7 +188,6 @@ const PopUpForm: React.FC<PopUpFormProps> = ({ isOpen, onClose }) => {
                                     {errors.name && <span className="text-red-500 text-xs mt-1">{errors.name}</span>}
                                 </div>
 
-                                {/* Email Input */}
                                 <div className="flex flex-col gap-1">
                                     <label className={`text-xs font-bold uppercase tracking-widest ${errors.email ? 'text-red-500' : 'text-[#010a1f]/50'}`}>Email Address</label>
                                     <input
@@ -211,7 +201,6 @@ const PopUpForm: React.FC<PopUpFormProps> = ({ isOpen, onClose }) => {
                                     {errors.email && <span className="text-red-500 text-xs mt-1">{errors.email}</span>}
                                 </div>
 
-                                {/* Phone Input */}
                                 <div className="flex flex-col gap-1">
                                     <label className={`text-xs font-bold uppercase tracking-widest ${errors.phone ? 'text-red-500' : 'text-[#010a1f]/50'}`}>Phone Number</label>
                                     <input
@@ -225,7 +214,6 @@ const PopUpForm: React.FC<PopUpFormProps> = ({ isOpen, onClose }) => {
                                     {errors.phone && <span className="text-red-500 text-xs mt-1">{errors.phone}</span>}
                                 </div>
 
-                                {/* Message Input */}
                                 <div className="flex flex-col gap-1 mb-2">
                                     <label className={`text-xs font-bold uppercase tracking-widest ${errors.message ? 'text-red-500' : 'text-[#010a1f]/50'}`}>Message</label>
                                     <textarea

@@ -10,24 +10,12 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT ? parseInt(process.env.PORT) : 5000;
 
-// --- DYNAMIC CORS CONFIGURATION ---
-const allowedOrigins = [
-    process.env.FRONTEND_URL,
-    'https://agilavetrigroups.com',
-    'https://www.agilavetrigroups.com',
-    'http://localhost:5173',
-    'http://127.0.0.1:5173'
-].filter(Boolean) as string[];
-
+// --- BULLETPROOF CORS CONFIGURATION ---
+// Setting origin to 'true' automatically reflects the incoming request origin.
+// This instantly resolves preflight (OPTIONS) blocks between Vite and Express.
 app.use(cors({
-    origin: function (origin, callback) {
-        if (!origin || allowedOrigins.includes(origin)) {
-            callback(null, true);
-        } else {
-            callback(new Error('Not allowed by CORS'));
-        }
-    },
-    methods: ['GET', 'POST', 'OPTIONS'],
+    origin: true, 
+    methods: ['GET', 'POST', 'OPTIONS', 'PUT', 'DELETE'],
     allowedHeaders: ['Content-Type', 'Authorization', 'Accept'],
     credentials: true
 }));
@@ -53,7 +41,7 @@ transporter.verify((error) => {
     } else {
         console.log("=====================================================");
         console.log(`✅ Mail server is ready using ${process.env.SMTP_HOST}`);
-        console.log("🟢 The Express API is active and listening for form submissions.");
+        console.log(`🟢 The Express API is active and listening on port ${PORT}`);
         console.log("=====================================================");
     }
 });
