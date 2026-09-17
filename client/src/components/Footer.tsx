@@ -220,8 +220,8 @@ const Footer: React.FC = () => {
                             <h4 className="text-sm font-bold tracking-widest uppercase text-white/50 mb-6">Get in Touch</h4>
                             <ul className="flex flex-col gap-4 font-light text-white/70">
                                 <li>
-                                    <a href="mailto:contact@agilavetri.com" className="hover:text-[#f77704] transition-colors duration-300">
-                                        contact@agilavetri.com
+                                    <a href="mailto:support@agilavetrigroups.com" className="hover:text-[#f77704] transition-colors duration-300">
+                                        support@agilavetrigroups.com
                                     </a>
                                 </li>
                                 <li>

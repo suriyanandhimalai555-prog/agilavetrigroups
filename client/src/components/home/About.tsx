@@ -153,7 +153,7 @@ const About: React.FC = () => {
 
                     <img
                         ref={imageRef}
-                        src="/about/about.webp"
+                        src="/about/about.jpg"
                         alt="AgilaVetri Groups Corporate Excellence"
                         className="relative z-10 w-full h-full object-cover transition-all duration-1000"
                     />
